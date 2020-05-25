@@ -1,4 +1,4 @@
-package comspring.dubbo.demo.order;
+package com.spring.dubbo.demo.order;
 
 import com.spring.dubbo.demo.user.api.IUserService;
 import org.apache.dubbo.container.Main;
