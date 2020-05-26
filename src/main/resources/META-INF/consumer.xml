@@ -11,5 +11,5 @@
     <dubbo:registry address="N/A" />
     <!-- 生成远程服务代理， 可以和本地Bea一样使用 userService -->
     <dubbo:reference id="userService" interface="com.spring.dubbo.demo.user.api.IUserService"
-        url="dubbo://10.33.3.192:20880/com.spring.dubbo.demo.user.api.IUserService"/>
+        url="dubbo://192.168.0.100:20880/com.spring.dubbo.demo.user.api.IUserService"/>
 </beans>
