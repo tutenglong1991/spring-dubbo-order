@@ -8,7 +8,7 @@
         http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="order-service" />
-    <dubbo:registry address="N/A" />
+    <dubbo:registry address="zookeeper://192.168.74.129:2181" check="false" />
     <!-- 生成远程服务代理， 可以和本地Bea一样使用 userService -->
     <dubbo:reference id="userService" interface="com.spring.dubbo.demo.user.api.IUserService"
         url="dubbo://192.168.0.100:20880/com.spring.dubbo.demo.user.api.IUserService"/>
