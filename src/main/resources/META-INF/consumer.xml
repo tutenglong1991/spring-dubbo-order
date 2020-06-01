@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo" xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
         http://dubbo.apache.org/schema/dubbo
-        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+        http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--&lt;!&ndash; 自动扫描 &ndash;&gt;-->
+    <!--<context:component-scan base-package="com.spring.dubbo.demo.user.service.impl"/>-->
+    <!--<context:component-scan base-package="com.spring.dubbo.demo.order.service.impl"/>-->
+
+    <!--<bean id="orderService" class="com.spring.dubbo.demo.order.service.impl.OrderServiceImpl" />-->
+    <!--<bean id="userServiceImpl" class="com.spring.dubbo.demo.user.service.impl.UserServiceImpl" />-->
+
     <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="order-service" />
-    <dubbo:registry address="zookeeper://192.168.74.129:2181" check="false" />
+    <dubbo:application name="order-service"></dubbo:application>
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" check="false" subscribe="true" register="true"></dubbo:registry>
     <!-- 生成远程服务代理， 可以和本地Bea一样使用 userService -->
-    <dubbo:reference id="userService" interface="com.spring.dubbo.demo.user.api.IUserService"
-        url="dubbo://192.168.0.100:20880/com.spring.dubbo.demo.user.api.IUserService"/>
+    <dubbo:reference id="userService" interface="com.spring.dubbo.demo.user.service.impl.UserServiceImpl"></dubbo:reference>
+    <dubbo:monitor protocol="register"></dubbo:monitor>
 </beans>

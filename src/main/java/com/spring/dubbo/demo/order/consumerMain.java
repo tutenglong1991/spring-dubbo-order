@@ -1,16 +1,23 @@
 package com.spring.dubbo.demo.order;
 
-import com.spring.dubbo.demo.user.api.IUserService;
-import org.apache.dubbo.container.Main;
+import com.spring.dubbo.demo.order.service.IOrderService;
+import com.spring.dubbo.demo.order.service.impl.OrderServiceImpl;
+import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.IOException;
+
 public class consumerMain {
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
         //第一种方式111
         ClassPathXmlApplicationContext context=new
             ClassPathXmlApplicationContext("classpath*:/META-INF/consumer.xml");
-        IUserService iUserService = (IUserService)context.getBean("userService");
-        System.out.println(iUserService.getNameById("1001"));
+        context.start();
+
+        OrderServiceImpl orderService = new OrderServiceImpl();
+        orderService.initOrder("1");
+        System.in.read(); //阻塞Main线程
         //第二种方式
 //        Main.main(args);
     }
