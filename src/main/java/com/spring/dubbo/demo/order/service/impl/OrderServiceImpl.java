@@ -6,6 +6,7 @@ import com.spring.dubbo.demo.user.service.api.IUserService;
 import com.spring.dubbo.demo.user.service.impl.UserServiceImpl;
 import com.spring.dubbo.demo.user.service.request.UserQueryReq;
 import com.spring.dubbo.demo.user.service.response.UserRespModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

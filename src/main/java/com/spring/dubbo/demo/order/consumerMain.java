@@ -1,8 +1,6 @@
 package com.spring.dubbo.demo.order;
 
-import com.spring.dubbo.demo.order.service.IOrderService;
 import com.spring.dubbo.demo.order.service.impl.OrderServiceImpl;
-import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
