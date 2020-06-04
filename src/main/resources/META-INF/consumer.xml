@@ -7,17 +7,15 @@
         http://dubbo.apache.org/schema/dubbo
         http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--&lt;!&ndash; 自动扫描 &ndash;&gt;-->
-    <!--<context:component-scan base-package="com.spring.dubbo.demo.user.service.impl"/>-->
-    <!--<context:component-scan base-package="com.spring.dubbo.demo.order.service.impl"/>-->
+    <!-- 自动扫描方式注入bean -->
+    <context:component-scan base-package="com.spring.dubbo.demo.order"/>
+    <!--<context:component-scan base-package="com.spring.dubbo.demo.user"/>-->
 
-    <!--<bean id="orderService" class="com.spring.dubbo.demo.order.service.impl.OrderServiceImpl" />-->
-    <!--<bean id="userServiceImpl" class="com.spring.dubbo.demo.user.service.impl.UserServiceImpl" />-->
 
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="order-service"></dubbo:application>
     <dubbo:registry address="zookeeper://127.0.0.1:2181" check="false" subscribe="true" register="true"></dubbo:registry>
     <!-- 生成远程服务代理， 可以和本地Bea一样使用 userService -->
-    <dubbo:reference id="userService" interface="com.spring.dubbo.demo.user.service.api.IUserService" timeout="20000" check="false"></dubbo:reference>
-    <dubbo:monitor protocol="register"></dubbo:monitor>
+    <dubbo:reference id="userService" interface="com.spring.dubbo.demo.user.service.api.IUserService" timeout="20000" check="false" url="dubbo://192.168.0.102:20881/com.spring.dubbo.demo.user.service.api.IUserService"></dubbo:reference>
+    <!--<dubbo:monitor protocol="register"></dubbo:monitor>-->
 </beans>
