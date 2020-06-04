@@ -22,7 +22,6 @@ public class OrderServiceImpl implements IOrderService {
         UserQueryReq userQueryReq = new UserQueryReq();
         userQueryReq.setId(userId);
         System.out.println(JSON.toJSONString(userQueryReq));
-        System.out.println(userService);
 
         UserRespModel userRespModel = userService.getUserInfoById(userQueryReq);
         String address = userRespModel.getAddress();

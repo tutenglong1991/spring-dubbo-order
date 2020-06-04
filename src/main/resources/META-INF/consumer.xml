@@ -11,11 +11,14 @@
     <context:component-scan base-package="com.spring.dubbo.demo.order"/>
     <!--<context:component-scan base-package="com.spring.dubbo.demo.user"/>-->
 
+    <context:annotation-config />
 
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="order-service"></dubbo:application>
-    <dubbo:registry address="zookeeper://127.0.0.1:2181" check="false" subscribe="true" register="true"></dubbo:registry>
+    <dubbo:registry protocol="zookeeper" address="zookeeper://127.0.0.1:2181" check="false" subscribe="true" register="true" default="true" ></dubbo:registry>
+    <!-- 用 Dubbo 协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20881" />
     <!-- 生成远程服务代理， 可以和本地Bea一样使用 userService -->
-    <dubbo:reference id="userService" interface="com.spring.dubbo.demo.user.service.api.IUserService" timeout="20000" check="false" url="dubbo://192.168.0.102:20881/com.spring.dubbo.demo.user.service.api.IUserService"></dubbo:reference>
-    <!--<dubbo:monitor protocol="register"></dubbo:monitor>-->
+    <dubbo:reference id="userService" interface="com.spring.dubbo.demo.user.service.api.IUserService" timeout="120000" check="false" url="dubbo://192.168.0.102:20881/com.spring.dubbo.demo.user.service.api.IUserService"></dubbo:reference>
+    <dubbo:monitor protocol="register"></dubbo:monitor>
 </beans>
